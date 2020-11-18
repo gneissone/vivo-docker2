@@ -47,13 +47,13 @@ case, your `docker-compose.yml` file would only contain the `solr` image.  You c
 # Notes
 
 ## Developer tricks and tips
-If you have already built VIVO using docker and made some changes, you may want to blow away your caches before recomposing.
+If you have already built VIVO using docker and made some changes, you may want to blow away your caches before recomposing.  
 `docker-compose up -d --build --force-recreate --renew-anon-volumes`
 
-You can ssh into the docker box to inspect the file system by checking the container name
+You can ssh into the docker box to inspect the file system by checking the container name  
 `docker ps`
 
-Then dropping the container name into the following command after the -it flag
+Then dropping the container name into the following command after the -it flag  
 `docker exec -it vivo-docker2_vivo_1 bash`
 
 
