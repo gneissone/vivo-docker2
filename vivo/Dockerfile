@@ -9,7 +9,7 @@ RUN apt-get install -y maven git
 
 WORKDIR /usr/local/
 
-RUN git clone https://github.com/vivo-project/Vitro.git Vitro 
+RUN git clone https://github.com/vivo-project/Vitro.git Vitro -b sprint-i18n
 RUN git clone https://github.com/vivo-project/VIVO.git VIVO -b sprint-i18n
 RUN git clone https://github.com/vivo-project/VIVO-languages.git VIVO-languages 
 RUN git clone https://github.com/vivo-project/Vitro-languages.git Vitro-languages 
@@ -17,17 +17,13 @@ RUN git clone https://github.com/vivo-project/Vitro-languages.git Vitro-language
 ENV BRANCH_NAME docker
 
 WORKDIR /usr/local/Vitro/
-RUN git fetch origin pull/169/head:${BRANCH_NAME}
+RUN git fetch origin pull/195/head:${BRANCH_NAME}
 RUN git checkout ${BRANCH_NAME}
 
 WORKDIR /usr/local/VIVO-languages/
-RUN git fetch origin pull/57/head:${BRANCH_NAME}
-RUN git checkout ${BRANCH_NAME}
 RUN mvn clean install
 
 WORKDIR /usr/local/Vitro-languages/
-RUN git fetch origin pull/24/head:${BRANCH_NAME}
-RUN git checkout ${BRANCH_NAME}
 RUN mvn clean install
 
 WORKDIR /usr/local/VIVO/
