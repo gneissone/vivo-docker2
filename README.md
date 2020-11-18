@@ -1,9 +1,8 @@
 # Dockerized VIVO
 
-This project creates three dockerized containers,
+This project creates two dockerized containers,
 - `vivo` The vivo instance
 - `solr` A standalone solr instance, based on a solr docker image
-- `mariadb` A standalone mariadb instance.
 
 These images can be used together, or independently to setup some development or working VIVO docker instances.
 
@@ -36,8 +35,7 @@ docker-compose up -d
 ## VIVO Development
 
 You can use these same containers to develop a local VIVO installation.  In this
-case, your `docker-compose.yml` file would only contain the `solr` and the
-`mariadb` images.  You can then connect to these images with your local setup.
+case, your `docker-compose.yml` file would only contain the `solr` image.  You can then connect to these images with your local setup.
 
 1. Install VIVO as usual, with the following changes to `runtime.properties`:
    ```
@@ -48,8 +46,16 @@ case, your `docker-compose.yml` file would only contain the `solr` and the
 
 # Notes
 
-## MariaDB ACL
-Currently, the [Mariadb Dockerfile](mariadb/Dockerfile) includes [SQL](mariadb/mysql-init.sql), that initializes a username:password for VIVO to communicate with mariadb.  If you'd like to change this, you'll need to perform some additional sql grant commands to alter this.
+## Developer tricks and tips
+If you have already built VIVO using docker and made some changes, you may want to blow away your caches before recomposing.
+`docker-compose up -d --build --force-recreate --renew-anon-volumes`
+
+You can ssh into the docker box to inspect the file system by checking the container name
+`docker ps`
+
+Then dropping the container name into the following command after the -it flag
+`docker exec -it vivo-docker2_vivo_1 bash`
+
 
 
 For earlier Dockerized VIVO releases, see [vivo-docker](https://github.com/gwu-libraries/vivo-docker)
